@@ -11,9 +11,6 @@ class AutoSortWrapWidget<T> extends StatefulWidget {
     this.width,
     this.spacing = 0.0,
     this.runSpacing = 0.0,
-    this.runAlignment = WrapAlignment.start,
-    this.alignment = WrapAlignment.start,
-    this.crossAxisAlignment = WrapCrossAlignment.start,
   }) : super(key: key);
 
   final List<T> data;
@@ -21,9 +18,6 @@ class AutoSortWrapWidget<T> extends StatefulWidget {
   final double? width;
   final double spacing;
   final double runSpacing;
-  final WrapAlignment runAlignment;
-  final WrapAlignment alignment;
-  final WrapCrossAlignment crossAxisAlignment;
 
   @override
   AutoSortWrapState<T> createState() => AutoSortWrapState<T>();
@@ -82,9 +76,9 @@ class AutoSortWrapState<T> extends State<AutoSortWrapWidget<T>>  {
 
   _getTmpContent(BuildContext context){
     return Wrap(
-      alignment: widget.alignment,
-      runAlignment: widget.runAlignment,
-      crossAxisAlignment: widget.crossAxisAlignment,
+      alignment:  WrapAlignment.start,
+      runAlignment: WrapAlignment.start,
+      crossAxisAlignment: WrapCrossAlignment.start,
       spacing: widget.spacing,
       runSpacing: widget.runSpacing,
       children: _getTmpItems(context),
