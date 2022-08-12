@@ -33,7 +33,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   final List<String> data = [
-    'hi',
     'spent',
     'life',
     'suffocating',
@@ -42,16 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
     'living',
     'Will',
     'Under',
-    'show me the money',
     'Will you stay a part of me',
-    'You’re killing me from within',
-    'abcdefghijklmnopqrstuvwxyz'
+    'You’re killing me from within'
   ];
+
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> data = [_getItem('show me the money'), _getItem('asbcdef'), _getItem('1234567890'), _getItem('hi'), _getItem('love')];
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -61,63 +57,51 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(101.0),
+              padding: const EdgeInsets.all(30.0),
               child: Container(
                 color: Colors.amber.withOpacity(0.3),
-                child: AutoSortWrapWidget<Widget>(
+                child: AutoSortWrapWidget<String>(
                     data: data,
                     runSpacing: 5,
                     spacing: 5,
-                    itemBuilder: (context, index, data) => Container(
-                      child: data,
-                      padding:  const EdgeInsets.all(5.0),
-                      color:Colors.blueAccent,
-                    ),
+                    itemBuilder: (context, index, aa) {
+                      return Container(
+                        padding: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(40),
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.white10,
+                              offset: Offset(4.0, 4.0),
+                              blurRadius: 15.0,
+                              spreadRadius: 1.0,
+                            ),
+                            BoxShadow(
+                              color: Colors.white,
+                              offset: Offset(-4.0, -4.0),
+                              blurRadius: 15.0,
+                              spreadRadius: 1.0,
+                            ),
+                          ],
+                        ),
+                        child: Text(aa,
+                          style: TextStyle(
+                              fontSize: 15
+                          ),
+                          maxLines: 10,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                        ),
+                      );
+                    }
                 ),
-                // child: Wrap(
-                //   runSpacing: 5,
-                //   spacing: 5,
-                //   children: List.generate(data.length, (index) => _getItem(data[index])),
-                // )
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  _getItem(data){
-    return Container(
-      padding: EdgeInsets.all(5.0),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: const BorderRadius.all(
-          Radius.circular(40),
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.white10,
-            offset: Offset(4.0, 4.0),
-            blurRadius: 15.0,
-            spreadRadius: 1.0,
-          ),
-          BoxShadow(
-            color: Colors.white,
-            offset: Offset(-4.0, -4.0),
-            blurRadius: 15.0,
-            spreadRadius: 1.0,
-          ),
-        ],
-      ),
-      child: Text(
-        data,
-        style: TextStyle(
-            fontSize: 15
-        ),
-        maxLines: 10,
-        overflow: TextOverflow.ellipsis,
-        softWrap: true,
       ),
     );
   }
